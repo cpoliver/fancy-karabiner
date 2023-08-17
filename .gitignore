@@ -28,6 +28,8 @@ GALLERY.md
 .idea/gradle.xml
 .idea/libraries
 
+.history/
+
 # Mongo Explorer plugin:
 .idea/mongoSettings.xml
 
