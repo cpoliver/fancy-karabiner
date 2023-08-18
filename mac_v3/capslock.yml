@@ -15,22 +15,22 @@ rules:
   - description: CPO Modifiers
     manipulators:
 
-      - description: 'capslock = esc(tap) | cmd + ctrl + shift + opt (hold)'
+      - description: 'capslock = esc(tap) | hyper: cmd + ctrl + shift + opt (hold)'
         type: basic
         from: { key_code: caps_lock, modifiers: { optional: [ any ] } }
         to: [ { key_code: right_shift, modifiers: [ right_command, right_control, right_option ] } ]
         to_if_alone: [ { key_code: escape } ]
 
-      - description: 'tab = tab(tap) | ctrl + shift + opt (hold)'
+      - description: 'tab = tab(tap) | meh: ctrl + shift + opt (hold)'
         type: basic
         from: { key_code: tab, modifiers: { optional: [ any ] } }
         to: [ { key_code: right_shift, modifiers: [ right_control, right_option ] } ]
         to_if_alone: [ { key_code: tab } ]
 
-      - description: 'right shift = window switcher (tap) | cmd + ctrl + option (hold)'
+      - description: 'right shift = hyper + '' (tap) | right shift (hold)'
         type: basic
         from: { key_code: right_shift, modifiers: { optional: [ any ] } }
-        to: [ { key_code: right_command, modifiers: [ right_control, right_option ] } ]
+        to: [ { key_code: right_shift } ]
         to_if_alone: [ { key_code: quote, modifiers: [right_shift, right_command, right_control, right_option] } ]
     
 
@@ -218,9 +218,19 @@ rules:
       - description: 'm = cycle stack backwards'
         type: basic
         from: { key_code: m, modifiers: { mandatory: [ right_control, right_shift, right_option ] } }
+        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --focus stack.prev || /opt/homebrew/bin/yabai -m window --focus stack.last' } ]
+
+      - description: 'shift + m = cycle stack forwards'
+        type: basic
+        from: { key_code: m, modifiers: { mandatory: [ right_control, right_shift, right_option ] } }
         to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --focus stack.next || /opt/homebrew/bin/yabai -m window --focus stack.first' } ]
 
-      - description: '. = cycle stack backwards'
+      - description: '. = cycle stack forwards'
+        type: basic
+        from: { key_code: period, modifiers: { mandatory: [ right_control, right_shift, right_option ] } }
+        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --focus stack.next || /opt/homebrew/bin/yabai -m window --focus stack.first' } ]
+
+      - description: 'shift + . = cycle stack backwards'
         type: basic
         from: { key_code: period, modifiers: { mandatory: [ right_control, right_shift, right_option ] } }
         to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --focus stack.prev || /opt/homebrew/bin/yabai -m window --focus stack.last' } ]
@@ -242,11 +252,6 @@ rules:
         from: { key_code: spacebar, modifiers: { mandatory: [ right_control, right_shift, right_option ] } }
         to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --toggle float' } ]
 
-      - description: 'shift + space = toggle sticky window'
-        type: basic
-        from: { key_code: spacebar, modifiers: { mandatory: [ right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --toggle sticky' } ]
-
       - description: 'return/enter = toggle fullscreen window'
         type: basic
         from: { key_code: return_or_enter, modifiers: { mandatory: [ right_control, right_shift, right_option ] } }
@@ -255,16 +260,6 @@ rules:
       ################################################################
       # yabai current space                                          #
       ################################################################
-
-      - description: 'command + n = create new space'
-        type: basic
-        from: { key_code: n, modifiers: { mandatory: [ left_command, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m space --create' } ]
-
-      - description: 'command + backspace = delete current space'
-        type: basic
-        from: { key_code: delete_or_backspace, modifiers: { mandatory: [ left_command, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m space --destroy' } ]
 
       - description: 'backspace = toggle show desktop'
         type: basic
@@ -385,475 +380,127 @@ rules:
         to: [ { shell_command: '/opt/homebrew/bin/yabai -m space --rotate 270' } ]
       
       ################################################################
-      # yabai spaces / displays                                      #
-      ################################################################
-
-      ### yabai recent space/display ###
-
-      - description: 'w = focus recent space'
-        type: basic
-        from: { key_code: w, modifiers: { mandatory: [ right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m space --focus recent' } ]
-
-      - description: 'shift + w = focus recent display'
-        type: basic
-        from: { key_code: w, modifiers: { mandatory: [ left_shift, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m display --focus recent' } ]
-
-      - description: 'command + w = move window to recent space'
-        type: basic
-        from: { key_code: w, modifiers: { mandatory: [ left_command, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --space recent' } ]
-
-      - description: 'shift + command + w = move window to recent display'
-        type: basic
-        from: { key_code: w, modifiers: { mandatory: [ left_shift, left_command, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --display recent' } ]
-
-        ### yabai recent display/space ###
-
-      - description: 's = focus recent display'
-        type: basic
-        from: { key_code: s, modifiers: { mandatory: [ right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m display --focus recent' } ]
-
-      - description: 'shift + s = focus recent space'
-        type: basic
-        from: { key_code: s, modifiers: { mandatory: [ left_shift, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m space --focus recent' } ]
-
-      - description: 'command + s = move window to recent display'
-        type: basic
-        from: { key_code: s, modifiers: { mandatory: [ left_command, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --display recent' } ]
-
-      - description: 'shift + command + s = move window to recent space'
-        type: basic
-        from: { key_code: s, modifiers: { mandatory: [ left_shift, left_command, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --space recent' } ]
-
-      ### yabai prev space/display ###
-
-      - description: 'q = focus prev space for display'
-        type: basic
-        from: { key_code: q, modifiers: { mandatory: [ right_control, right_shift, right_option ] } }
-        to: [ { shell_command: 'id="$(/opt/homebrew/bin/yabai -m query --spaces --display | /opt/homebrew/bin/jq ''sort_by(.index) | .[map(."has-focus") | index(true) - 1].index'')" && /opt/homebrew/bin/yabai -m space --focus "${id}"' } ]
-
-      - description: 'shift + w = focus prev display'
-        type: basic
-        from: { key_code: q, modifiers: { mandatory: [ left_shift, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m display --focus prev || /opt/homebrew/bin/yabai -m display --focus last' } ]
-
-      - description: 'command + q = move window to prev space for display'
-        type: basic
-        from: { key_code: q, modifiers: { mandatory: [ left_command, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: 'cur_window=$(/opt/homebrew/bin/yabai -m query --windows --window | /opt/homebrew/bin/jq ''.id'') && id="$(/opt/homebrew/bin/yabai -m query --spaces --display | /opt/homebrew/bin/jq ''sort_by(.index) | .[map(."has-focus") | index(true) - 1].index'')" && /opt/homebrew/bin/yabai -m window --space "${id}" && /opt/homebrew/bin/yabai -m window --focus ${cur_window}' } ]
-
-      - description: 'shift + command + w = move window to prev display'
-        type: basic
-        from: { key_code: q, modifiers: { mandatory: [ left_shift, left_command, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --display prev || /opt/homebrew/bin/yabai -m window --display last' } ]
-
-      ### yabai prev display/space ###
-
-      - description: 'a = focus prev display'
-        type: basic
-        from: { key_code: a, modifiers: { mandatory: [ right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m display --focus prev || /opt/homebrew/bin/yabai -m display --focus last' } ]
-
-      - description: 'shift + a = focus prev space'
-        type: basic
-        from: { key_code: a, modifiers: { mandatory: [ left_shift, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m space --focus prev || /opt/homebrew/bin/yabai -m space --focus last' } ]
-
-      - description: 'command + a = move window to prev display'
-        type: basic
-        from: { key_code: a, modifiers: { mandatory: [ left_command, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --display prev || /opt/homebrew/bin/yabai -m window --display last' } ]
-
-      - description: 'shift + command + a = move window to prev space'
-        type: basic
-        from: { key_code: a, modifiers: { mandatory: [ left_shift, left_command, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --space prev || /opt/homebrew/bin/yabai -m window --space last' } ]
-
-      ### yabai next space/display ###
-
-      - description: 'e = focus next space for display'
-        type: basic
-        from: { key_code: e, modifiers: { mandatory: [ right_control, right_shift, right_option ] } }
-        to: [ { shell_command: 'id="$(/opt/homebrew/bin/yabai -m query --spaces --display | /opt/homebrew/bin/jq ''sort_by(.index) | reverse | .[map(."has-focus") | index(true) - 1].index'')" && /opt/homebrew/bin/yabai -m space --focus "${id}"' } ]
-
-      - description: 'shift + e = focus next display'
-        type: basic
-        from: { key_code: e, modifiers: { mandatory: [ left_shift, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m display --focus next || /opt/homebrew/bin/yabai -m display --focus first' } ]
-
-      - description: 'command + e = move window to next space for display'
-        type: basic
-        from: { key_code: e, modifiers: { mandatory: [ left_command, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: 'cur_window=$(/opt/homebrew/bin/yabai -m query --windows --window | /opt/homebrew/bin/jq ''.id'') && id="$(/opt/homebrew/bin/yabai -m query --spaces --display | /opt/homebrew/bin/jq ''sort_by(.index) | .[map(."has-focus") | index(true) - 1].index'')" && /opt/homebrew/bin/yabai -m window --space "${id}" && /opt/homebrew/bin/yabai -m window --focus ${cur_window}' } ]
-
-      - description: 'shift + command + e = move window to next display'
-        type: basic
-        from: { key_code: e, modifiers: { mandatory: [ left_shift, left_command, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --display next || /opt/homebrew/bin/yabai -m window --display first' } ]
-
-      ### yabai next display/space ###
-
-      - description: 'd = focus next display'
-        type: basic
-        from: { key_code: d, modifiers: { mandatory: [ right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m display --focus next || /opt/homebrew/bin/yabai -m display --focus first' } ]
-
-      - description: 'shift + d = focus next space'
-        type: basic
-        from: { key_code: d, modifiers: { mandatory: [ left_shift, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m space --focus next || /opt/homebrew/bin/yabai -m space --focus first' } ]
-
-      - description: 'command + d = move window to next display'
-        type: basic
-        from: { key_code: d, modifiers: { mandatory: [ left_command, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --display next || /opt/homebrew/bin/yabai -m window --display first' } ]
-
-      - description: 'shift + command + d = move window to next space'
-        type: basic
-        from: { key_code: d, modifiers: { mandatory: [ left_shift, left_command, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --space next || /opt/homebrew/bin/yabai -m window --space first' } ]
-
-      ################################################################
-      # yabai numbered spaces/displays                               #
-      ################################################################
-
-      ### space 1 / 11, display 1 ###
-
-      - description: '1 = focus space 1'
-        type: basic
-        from: { key_code: '1', modifiers: { mandatory: [ right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m space --focus 1' } ]
-
-      - description: 'shift + 1 = focus space 11'
-        type: basic
-        from: { key_code: '1', modifiers: { mandatory: [ left_shift, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m space --focus 11' } ]
-
-      - description: 'command + 1 = move window to space 1'
-        type: basic
-        from: { key_code: '1', modifiers: { mandatory: [ left_command, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --space 1' } ]
-
-      - description: 'shift + command + 1 = move window to space 11'
-        type: basic
-        from: { key_code: '1', modifiers: { mandatory: [ left_shift, left_command, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --space 11' } ]
-
-      - description: 'option + 1 = move window to display 1'
-        type: basic
-        from: { key_code: '1', modifiers: { mandatory: [ left_option, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --display 1' } ]
-
-      - description: 'control + 1 = focus display 1'
-        type: basic
-        from: { key_code: '1', modifiers: { mandatory: [ left_control, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m display --focus 1' } ]
-
-      ### space 2 / 12, display 2 ###
-
-      - description: '2 = focus space 2'
-        type: basic
-        from: { key_code: '2', modifiers: { mandatory: [ right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m space --focus 2' } ]
-
-      - description: 'shift + 2 = focus space 12'
-        type: basic
-        from: { key_code: '2', modifiers: { mandatory: [ left_shift, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m space --focus 12' } ]
-
-      - description: 'command + 2 = move window to space 2'
-        type: basic
-        from: { key_code: '2', modifiers: { mandatory: [ left_command, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --space 2' } ]
-
-      - description: 'shift + command + 2 = move window to space 12'
-        type: basic
-        from: { key_code: '2', modifiers: { mandatory: [ left_shift, left_command, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --space 12' } ]
-
-      - description: 'option + 2 = move window to display 2'
-        type: basic
-        from: { key_code: '2', modifiers: { mandatory: [ left_option, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --display 2' } ]
-
-      - description: 'control + 2 = focus display 2'
-        type: basic
-        from: { key_code: '2', modifiers: { mandatory: [ left_control, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m display --focus 2' } ]
-
-      ### space 3 / 13, display 3 ###
-
-      - description: '3 = focus space 3'
-        type: basic
-        from: { key_code: '3', modifiers: { mandatory: [ right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m space --focus 3' } ]
-
-      - description: 'shift + 3 = focus space 13'
-        type: basic
-        from: { key_code: '3', modifiers: { mandatory: [ left_shift, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m space --focus 13' } ]
-
-      - description: 'command + 3 = move window to space 3'
-        type: basic
-        from: { key_code: '3', modifiers: { mandatory: [ left_command, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --space 3' } ]
-
-      - description: 'shift + command + 3 = move window to space 13'
-        type: basic
-        from: { key_code: '3', modifiers: { mandatory: [ left_shift, left_command, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --space 13' } ]
-
-      - description: 'option + 3 = move window to display 3'
-        type: basic
-        from: { key_code: '3', modifiers: { mandatory: [ left_option, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --display 3' } ]
-
-      - description: 'control + 3 = focus display 3'
-        type: basic
-        from: { key_code: '3', modifiers: { mandatory: [ left_control, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m display --focus 3' } ]
-
-      ### space 4 / 14, display 4 ###
-
-      - description: '4 = focus space 4'
-        type: basic
-        from: { key_code: '4', modifiers: { mandatory: [ right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m space --focus 4' } ]
-
-      - description: 'shift + 4 = focus space 14'
-        type: basic
-        from: { key_code: '4', modifiers: { mandatory: [ left_shift, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m space --focus 14' } ]
-
-      - description: 'command + 4 = move window to space 4'
-        type: basic
-        from: { key_code: '4', modifiers: { mandatory: [ left_command, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --space 4' } ]
-
-      - description: 'shift + command + 4 = move window to space 14'
-        type: basic
-        from: { key_code: '4', modifiers: { mandatory: [ left_shift, left_command, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --space 14' } ]
-
-      - description: 'option + 4 = move window to display 4'
-        type: basic
-        from: { key_code: '4', modifiers: { mandatory: [ left_option, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --display 4' } ]
-
-      - description: 'control + 4 = focus display 4'
-        type: basic
-        from: { key_code: '4', modifiers: { mandatory: [ left_control, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m display --focus 4' } ]
-
-      ### space 5 / 15, display 5 ###
-
-      - description: '5 = focus space 5'
-        type: basic
-        from: { key_code: '5', modifiers: { mandatory: [ right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m space --focus 5' } ]
-
-      - description: 'shift + 5 = focus space 15'
-        type: basic
-        from: { key_code: '5', modifiers: { mandatory: [ left_shift, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m space --focus 15' } ]
-
-      - description: 'command + 5 = move window to space 5'
-        type: basic
-        from: { key_code: '5', modifiers: { mandatory: [ left_command, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --space 5' } ]
-
-      - description: 'shift + command + 5 = move window to space 15'
-        type: basic
-        from: { key_code: '5', modifiers: { mandatory: [ left_shift, left_command, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --space 15' } ]
-
-      - description: 'option + 5 = move window to display 5'
-        type: basic
-        from: { key_code: '5', modifiers: { mandatory: [ left_option, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --display 5' } ]
-
-      - description: 'control + 5 = focus display 5'
-        type: basic
-        from: { key_code: '5', modifiers: { mandatory: [ left_control, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m display --focus 5' } ]
-
-      ### space 6 / 16, display 6 ###
-
-      - description: '6 = focus space 6'
-        type: basic
-        from: { key_code: '6', modifiers: { mandatory: [ right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m space --focus 6' } ]
-
-      - description: 'shift + 6 = focus space 16'
-        type: basic
-        from: { key_code: '6', modifiers: { mandatory: [ left_shift, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m space --focus 16' } ]
-
-      - description: 'command + 6 = move window to space 6'
-        type: basic
-        from: { key_code: '6', modifiers: { mandatory: [ left_command, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --space 6' } ]
-
-      - description: 'shift + command + 6 = move window to space 16'
-        type: basic
-        from: { key_code: '6', modifiers: { mandatory: [ left_shift, left_command, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --space 16' } ]
-
-      - description: 'option + 6 = move window to display 6'
-        type: basic
-        from: { key_code: '6', modifiers: { mandatory: [ left_option, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --display 6' } ]
-
-      - description: 'control + 6 = focus display 6'
-        type: basic
-        from: { key_code: '6', modifiers: { mandatory: [ left_control, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m display --focus 6' } ]
-
-      ### space 7 / 17, display 7 ###
-
-      - description: '7 = focus space 7'
-        type: basic
-        from: { key_code: '7', modifiers: { mandatory: [ right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m space --focus 7' } ]
-
-      - description: 'shift + 7 = focus space 17'
-        type: basic
-        from: { key_code: '7', modifiers: { mandatory: [ left_shift, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m space --focus 17' } ]
-
-      - description: 'command + 7 = move window to space 7'
-        type: basic
-        from: { key_code: '7', modifiers: { mandatory: [ left_command, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --space 7' } ]
-
-      - description: 'shift + command + 7 = move window to space 17'
-        type: basic
-        from: { key_code: '7', modifiers: { mandatory: [ left_shift, left_command, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --space 17' } ]
-
-      - description: 'option + 7 = move window to display 7'
-        type: basic
-        from: { key_code: '7', modifiers: { mandatory: [ left_option, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --display 7' } ]
-
-      - description: 'control + 7 = focus display 7'
-        type: basic
-        from: { key_code: '7', modifiers: { mandatory: [ left_control, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m display --focus 7' } ]
-
-      ### space 8 / 18, display 8 ###
-
-      - description: '8 = focus space 8'
-        type: basic
-        from: { key_code: '8', modifiers: { mandatory: [ right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m space --focus 8' } ]
-
-      - description: 'shift + 8 = focus space 18'
-        type: basic
-        from: { key_code: '8', modifiers: { mandatory: [ left_shift, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m space --focus 18' } ]
-
-      - description: 'command + 8 = move window to space 8'
-        type: basic
-        from: { key_code: '8', modifiers: { mandatory: [ left_command, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --space 8' } ]
-
-      - description: 'shift + command + 8 = move window to space 18'
-        type: basic
-        from: { key_code: '8', modifiers: { mandatory: [ left_shift, left_command, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --space 18' } ]
-
-      - description: 'option + 8 = move window to display 8'
-        type: basic
-        from: { key_code: '8', modifiers: { mandatory: [ left_option, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --display 8' } ]
-
-      - description: 'control + 8 = focus display 8'
-        type: basic
-        from: { key_code: '8', modifiers: { mandatory: [ left_control, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m display --focus 8' } ]
-
-      ### space 9 / 19, display 9 ###
-
-      - description: '9 = focus space 9'
-        type: basic
-        from: { key_code: '9', modifiers: { mandatory: [ right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m space --focus 9' } ]
-
-      - description: 'shift + 9 = focus space 19'
-        type: basic
-        from: { key_code: '9', modifiers: { mandatory: [ left_shift, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m space --focus 19' } ]
-
-      - description: 'command + 9 = move window to space 9'
-        type: basic
-        from: { key_code: '9', modifiers: { mandatory: [ left_command, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --space 9' } ]
-
-      - description: 'shift + command + 9 = move window to space 19'
-        type: basic
-        from: { key_code: '9', modifiers: { mandatory: [ left_shift, left_command, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --space 19' } ]
-
-      - description: 'option + 9 = move window to display 9'
-        type: basic
-        from: { key_code: '9', modifiers: { mandatory: [ left_option, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --display 9' } ]
-
-      - description: 'control + 9 = focus display 9'
-        type: basic
-        from: { key_code: '9', modifiers: { mandatory: [ left_control, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m display --focus 9' } ]
-
-      ### space 10 / 20, display 10 ###
-
-      - description: '0 = focus space 10'
-        type: basic
-        from: { key_code: '0', modifiers: { mandatory: [ right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m space --focus 10' } ]
-
-      - description: 'shift + 0 = focus space 10'
-        type: basic
-        from: { key_code: '0', modifiers: { mandatory: [ left_shift, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m space --focus 20' } ]
-
-      - description: 'command + 0 = move window to space 10'
-        type: basic
-        from: { key_code: '0', modifiers: { mandatory: [ left_command, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --space 10' } ]
-
-      - description: 'shift + command + 0 = move window to space 20'
-        type: basic
-        from: { key_code: '0', modifiers: { mandatory: [ left_shift, left_command, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --space 20' } ]
-
-      - description: 'option + 0 = move window to display 10'
-        type: basic
-        from: { key_code: '0', modifiers: { mandatory: [ left_option, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --display 10' } ]
-
-      - description: 'control + 0 = focus display 10'
-        type: basic
-        from: { key_code: '0', modifiers: { mandatory: [ left_control, right_control, right_shift, right_option ] } }
-        to: [ { shell_command: '/opt/homebrew/bin/yabai -m display --focus 10' } ]
-      
-      ################################################################
       # yabai displays                                               #
       ################################################################
 
+      ### yabai recent display ###
+
+      - description: 'e = focus recent display'
+        type: basic
+        from: { key_code: e, modifiers: { mandatory: [ right_control, right_shift, right_option ] } }
+        to: [ { shell_command: '/opt/homebrew/bin/yabai -m display --focus recent' } ]
+
+      - description: 'command + e = move window to recent display'
+        type: basic
+        from: { key_code: e, modifiers: { mandatory: [ left_command, right_control, right_shift, right_option ] } }
+        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --display recent' } ]
+
+      ### yabai prev display ###
+
+      - description: 'r = focus prev display'
+        type: basic
+        from: { key_code: r, modifiers: { mandatory: [ right_control, right_shift, right_option ] } }
+        to: [ { shell_command: '/opt/homebrew/bin/yabai -m display --focus prev || /opt/homebrew/bin/yabai -m display --focus last' } ]
+
+      - description: 'command + r = move window to prev display'
+        type: basic
+        from: { key_code: r, modifiers: { mandatory: [ left_command, right_control, right_shift, right_option ] } }
+        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --display prev || /opt/homebrew/bin/yabai -m window --display last' } ]
+
+      ### yabai next display ###
+
+      - description: 't = focus next display'
+        type: basic
+        from: { key_code: t, modifiers: { mandatory: [ right_control, right_shift, right_option ] } }
+        to: [ { shell_command: '/opt/homebrew/bin/yabai -m display --focus next || /opt/homebrew/bin/yabai -m display --focus first' } ]
+
+      - description: 'command + t = move window to next display'
+        type: basic
+        from: { key_code: t, modifiers: { mandatory: [ left_command, right_control, right_shift, right_option ] } }
+        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --display next || /opt/homebrew/bin/yabai -m window --display first' } ]
+
+      ### display: ultrawide 1
+
+      - description: 'q = focus display: ultrawide 1'
+        type: basic
+        from: { key_code: q, modifiers: { mandatory: [ right_control, right_shift, right_option ] } }
+        to: [ { shell_command: '/opt/homebrew/bin/yabai -m display --focus 1' } ]
+
+      - description: 'command + q = move window to display: primary'
+        type: basic
+        from: { key_code: q, modifiers: { mandatory: [ left_command, right_control, right_shift, right_option ] } }
+        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --display 1' } ]
+
+      ### display: ultrawide 2
+
+      - description: 'w = focus display: ultrawide 2'
+        type: basic
+        from: { key_code: w, modifiers: { mandatory: [ right_control, right_shift, right_option ] } }
+        to: [ { shell_command: '/opt/homebrew/bin/yabai -m display --focus 3' } ]
+
+      - description: 'command + w = move window to display 1'
+        type: basic
+        from: { key_code: w, modifiers: { mandatory: [ left_command, right_control, right_shift, right_option ] } }
+        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --display 3' } ]
+
+      ### display: portable 1
+
+      - description: 'a = focus display: portable 1'
+        type: basic
+        from: { key_code: a, modifiers: { mandatory: [ right_control, right_shift, right_option ] } }
+        to: [ { shell_command: '/opt/homebrew/bin/yabai -m display --focus 2' } ]
+
+      - description: 'command + a = move window to display 1'
+        type: basic
+        from: { key_code: a, modifiers: { mandatory: [ left_command, right_control, right_shift, right_option ] } }
+        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --display 2' } ]
+
+      ### display: portable 2
+
+      - description: 's = focus display 4'
+        type: basic
+        from: { key_code: s, modifiers: { mandatory: [ right_control, right_shift, right_option ] } }
+        to: [ { shell_command: '/opt/homebrew/bin/yabai -m display --focus 4' } ]
+
+      - description: 'command + s = move window to display 1'
+        type: basic
+        from: { key_code: s, modifiers: { mandatory: [ left_command, right_control, right_shift, right_option ] } }
+        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --display 4' } ]
+
+      ### display: macbook
+
+      - description: 'd = focus display: macbook'
+        type: basic
+        from: { key_code: d, modifiers: { mandatory: [ right_control, right_shift, right_option ] } }
+        to: [ { shell_command: '/opt/homebrew/bin/yabai -m display --focus 5' } ]
+
+      - description: 'command + d = move window to display 1'
+        type: basic
+        from: { key_code: d, modifiers: { mandatory: [ left_command, right_control, right_shift, right_option ] } }
+        to: [ { shell_command: '/opt/homebrew/bin/yabai -m window --display 5' } ]
 
   ################################################################
   #                       Hyper Navigation                       #
   ################################################################
   - description: CPO Hyper Navigation
     manipulators:
+      #==========================================================#
+      # passthrough                                              #
+      #==========================================================#
+
+      - description: 'hyper + space = cmd + space'
+        type: basic
+        from: { key_code: spacebar, modifiers: { optional: [ left_shift, left_command, left_control, left_option ], mandatory: [ right_command, right_control, right_shift, right_option ] } }
+        to: [ { key_code: spacebar, modifiers: [ left_command ] } ]
+
+      #==========================================================#
+      # passthrough                                              #
+      #==========================================================#
+
+      # - description: 'hyper + return = return'
+      #   type: basic
+      #   from: { key_code: return_or_enter, modifiers: { optional: [ left_shift, left_command, left_control, left_option ], mandatory: [ left_shift, right_command, right_control, right_shift, right_option ] } }
+      #   to: [ { key_code: return_or_enter  } ]
 
       #==========================================================#
       # hyper left                                               #

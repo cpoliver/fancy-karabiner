@@ -1,0 +1,2992 @@
+{
+  "title": "Fancy Karabiner",
+  "url": "https://github.com/cpoliver/fancy-karabiner",
+  "version": "0.0.1",
+  "maintainers": [
+    "cpoliver"
+  ],
+  "author": "cpoliver(cpoliver@users.noreply.github.com)",
+  "website": "https://github.com/cpoliver/fancy-karabiner",
+  "json_url": "https://raw.githubusercontent.com/cpoliver/fancy-karabiner/master/mac_v3/capslock.json",
+  "import_url": "karabiner://karabiner/assets/complex_modifications/import?url=https://raw.githubusercontent.com/cpoliver/fancy-karabiner/master/mac_v3/capslock.json",
+  "gallery_url": "https://ke-complex-modifications.pqrs.org/#emulation-modes",
+  "repo": "https://github.com/cpoliver/fancy-karabiner",
+  "rules": [
+    {
+      "description": "CPO Modifiers",
+      "manipulators": [
+        {
+          "description": "capslock = esc(tap) | hyper: cmd + ctrl + shift + opt (hold)",
+          "type": "basic",
+          "from": {
+            "key_code": "caps_lock",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_shift",
+              "modifiers": [
+                "right_command",
+                "right_control",
+                "right_option"
+              ]
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "escape"
+            }
+          ]
+        },
+        {
+          "description": "tab = tab(tap) | meh: ctrl + shift + opt (hold)",
+          "type": "basic",
+          "from": {
+            "key_code": "tab",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_shift",
+              "modifiers": [
+                "right_control",
+                "right_option"
+              ]
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "tab"
+            }
+          ]
+        },
+        {
+          "description": "right shift = hyper + ' (tap) | right shift (hold)",
+          "type": "basic",
+          "from": {
+            "key_code": "right_shift",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_shift"
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "quote",
+              "modifiers": [
+                "right_shift",
+                "right_command",
+                "right_control",
+                "right_option"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "CPO Meh Yabai",
+      "manipulators": [
+        {
+          "description": "command + r = restart",
+          "type": "basic",
+          "from": {
+            "key_code": "r",
+            "modifiers": {
+              "mandatory": [
+                "left_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai --restart-service"
+            }
+          ]
+        },
+        {
+          "description": "j = focus left",
+          "type": "basic",
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "mandatory": [
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --focus west"
+            }
+          ]
+        },
+        {
+          "description": "shift + j = insert left",
+          "type": "basic",
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "mandatory": [
+                "left_shift",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --insert west"
+            }
+          ]
+        },
+        {
+          "description": "command + j = move left",
+          "type": "basic",
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "mandatory": [
+                "left_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --warp west"
+            }
+          ]
+        },
+        {
+          "description": "shift + command + j = swap left",
+          "type": "basic",
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "mandatory": [
+                "left_shift",
+                "left_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --swap west"
+            }
+          ]
+        },
+        {
+          "description": "option + j = resize left",
+          "type": "basic",
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "mandatory": [
+                "left_option",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --resize left:-50:0; /opt/homebrew/bin/yabai -m window --resize right:-50:0"
+            }
+          ]
+        },
+        {
+          "description": "option + shift + j = resize large left",
+          "type": "basic",
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "mandatory": [
+                "left_option",
+                "left_shift",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --resize left:-300:0; /opt/homebrew/bin/yabai -m window --resize right:-300:0"
+            }
+          ]
+        },
+        {
+          "description": "option + control + j = resize small left",
+          "type": "basic",
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "mandatory": [
+                "left_option",
+                "left_control",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --resize left:-10:0; /opt/homebrew/bin/yabai -m window --resize right:-10:0"
+            }
+          ]
+        },
+        {
+          "description": "k = focus down",
+          "type": "basic",
+          "from": {
+            "key_code": "k",
+            "modifiers": {
+              "mandatory": [
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --focus south"
+            }
+          ]
+        },
+        {
+          "description": "shift + k = insert down",
+          "type": "basic",
+          "from": {
+            "key_code": "k",
+            "modifiers": {
+              "mandatory": [
+                "left_shift",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --insert south"
+            }
+          ]
+        },
+        {
+          "description": "command + k = move down",
+          "type": "basic",
+          "from": {
+            "key_code": "k",
+            "modifiers": {
+              "mandatory": [
+                "left_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --warp south"
+            }
+          ]
+        },
+        {
+          "description": "shift + command + k = swap down",
+          "type": "basic",
+          "from": {
+            "key_code": "k",
+            "modifiers": {
+              "mandatory": [
+                "left_shift",
+                "left_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --swap south"
+            }
+          ]
+        },
+        {
+          "description": "option + k = resize down",
+          "type": "basic",
+          "from": {
+            "key_code": "k",
+            "modifiers": {
+              "mandatory": [
+                "left_option",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --resize top:-50:0; /opt/homebrew/bin/yabai -m window --resize bottom:-50:0"
+            }
+          ]
+        },
+        {
+          "description": "option + shift + k = resize large down",
+          "type": "basic",
+          "from": {
+            "key_code": "k",
+            "modifiers": {
+              "mandatory": [
+                "left_option",
+                "left_shift",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --resize top:-300:0; /opt/homebrew/bin/yabai -m window --resize bottom:-300:0"
+            }
+          ]
+        },
+        {
+          "description": "option + control + k = resize small down",
+          "type": "basic",
+          "from": {
+            "key_code": "k",
+            "modifiers": {
+              "mandatory": [
+                "left_option",
+                "left_control",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --resize top:-10:0; /opt/homebrew/bin/yabai -m window --resize bottom:-10:0"
+            }
+          ]
+        },
+        {
+          "description": "i = focus up",
+          "type": "basic",
+          "from": {
+            "key_code": "i",
+            "modifiers": {
+              "mandatory": [
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --focus north"
+            }
+          ]
+        },
+        {
+          "description": "shift + i = insert down",
+          "type": "basic",
+          "from": {
+            "key_code": "i",
+            "modifiers": {
+              "mandatory": [
+                "left_shift",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --insert north"
+            }
+          ]
+        },
+        {
+          "description": "command + i = move down",
+          "type": "basic",
+          "from": {
+            "key_code": "i",
+            "modifiers": {
+              "mandatory": [
+                "left_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --warp north"
+            }
+          ]
+        },
+        {
+          "description": "shift + command + i = swap down",
+          "type": "basic",
+          "from": {
+            "key_code": "i",
+            "modifiers": {
+              "mandatory": [
+                "left_shift",
+                "left_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --swap north"
+            }
+          ]
+        },
+        {
+          "description": "option + i = resize down",
+          "type": "basic",
+          "from": {
+            "key_code": "i",
+            "modifiers": {
+              "mandatory": [
+                "left_option",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --resize top:0:-50; /opt/homebrew/bin/yabai -m window --resize bottom:0:-50"
+            }
+          ]
+        },
+        {
+          "description": "option + shift + i = resize large down",
+          "type": "basic",
+          "from": {
+            "key_code": "i",
+            "modifiers": {
+              "mandatory": [
+                "left_option",
+                "left_shift",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --resize top:0:-300; /opt/homebrew/bin/yabai -m window --resize bottom:0:-300"
+            }
+          ]
+        },
+        {
+          "description": "option + control + i = resize small up",
+          "type": "basic",
+          "from": {
+            "key_code": "i",
+            "modifiers": {
+              "mandatory": [
+                "left_option",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --resize top:0:-10; /opt/homebrew/bin/yabai -m window --resize bottom:0:-10"
+            }
+          ]
+        },
+        {
+          "description": "l = focus right",
+          "type": "basic",
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "mandatory": [
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --focus east"
+            }
+          ]
+        },
+        {
+          "description": "shift + l = insert right",
+          "type": "basic",
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "mandatory": [
+                "left_shift",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --insert east"
+            }
+          ]
+        },
+        {
+          "description": "command + l = move right",
+          "type": "basic",
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "mandatory": [
+                "left_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --warp east"
+            }
+          ]
+        },
+        {
+          "description": "shift + command + l = swap right",
+          "type": "basic",
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "mandatory": [
+                "left_shift",
+                "left_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --swap east"
+            }
+          ]
+        },
+        {
+          "description": "option + l = resize right",
+          "type": "basic",
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "mandatory": [
+                "left_option",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --resize left:50:0; /opt/homebrew/bin/yabai -m window --resize right:50:0"
+            }
+          ]
+        },
+        {
+          "description": "option + shift + l = resize large right",
+          "type": "basic",
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "mandatory": [
+                "left_option",
+                "left_shift",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --resize left:300:0; /opt/homebrew/bin/yabai -m window --resize right:300:0"
+            }
+          ]
+        },
+        {
+          "description": "option + control + l = resize small right",
+          "type": "basic",
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "mandatory": [
+                "left_option",
+                "left_control",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --resize left:10:0; /opt/homebrew/bin/yabai -m window --resize right:10:0"
+            }
+          ]
+        },
+        {
+          "description": "u = cycle focus prev",
+          "type": "basic",
+          "from": {
+            "key_code": "u",
+            "modifiers": {
+              "mandatory": [
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --focus prev || /opt/homebrew/bin/yabai -m display --focus prev || /opt/homebrew/bin/yabai -m display --focus last"
+            }
+          ]
+        },
+        {
+          "description": "o = cycle focus next",
+          "type": "basic",
+          "from": {
+            "key_code": "o",
+            "modifiers": {
+              "mandatory": [
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --focus prev || /opt/homebrew/bin/yabai -m display --focus prev || /opt/homebrew/bin/yabai -m display --focus first"
+            }
+          ]
+        },
+        {
+          "description": "m = cycle stack backwards",
+          "type": "basic",
+          "from": {
+            "key_code": "m",
+            "modifiers": {
+              "mandatory": [
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --focus stack.prev || /opt/homebrew/bin/yabai -m window --focus stack.last"
+            }
+          ]
+        },
+        {
+          "description": "shift + m = cycle stack forwards",
+          "type": "basic",
+          "from": {
+            "key_code": "m",
+            "modifiers": {
+              "mandatory": [
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --focus stack.next || /opt/homebrew/bin/yabai -m window --focus stack.first"
+            }
+          ]
+        },
+        {
+          "description": ". = cycle stack forwards",
+          "type": "basic",
+          "from": {
+            "key_code": "period",
+            "modifiers": {
+              "mandatory": [
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --focus stack.next || /opt/homebrew/bin/yabai -m window --focus stack.first"
+            }
+          ]
+        },
+        {
+          "description": "shift + . = cycle stack backwards",
+          "type": "basic",
+          "from": {
+            "key_code": "period",
+            "modifiers": {
+              "mandatory": [
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --focus stack.prev || /opt/homebrew/bin/yabai -m window --focus stack.last"
+            }
+          ]
+        },
+        {
+          "description": ", = stack on previous",
+          "type": "basic",
+          "from": {
+            "key_code": "comma",
+            "modifiers": {
+              "mandatory": [
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --stack recent"
+            }
+          ]
+        },
+        {
+          "description": "/ = insert stack",
+          "type": "basic",
+          "from": {
+            "key_code": "slash",
+            "modifiers": {
+              "mandatory": [
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --insert stack"
+            }
+          ]
+        },
+        {
+          "description": "space = toggle float window",
+          "type": "basic",
+          "from": {
+            "key_code": "spacebar",
+            "modifiers": {
+              "mandatory": [
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --toggle float"
+            }
+          ]
+        },
+        {
+          "description": "return/enter = toggle fullscreen window",
+          "type": "basic",
+          "from": {
+            "key_code": "return_or_enter",
+            "modifiers": {
+              "mandatory": [
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --toggle zoom-fullscreen"
+            }
+          ]
+        },
+        {
+          "description": "backspace = toggle show desktop",
+          "type": "basic",
+          "from": {
+            "key_code": "delete_or_backspace",
+            "modifiers": {
+              "mandatory": [
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m space --toggle show-desktop"
+            }
+          ]
+        },
+        {
+          "description": "equals = balance",
+          "type": "basic",
+          "from": {
+            "key_code": "equal_sign",
+            "modifiers": {
+              "mandatory": [
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m space --balance"
+            }
+          ]
+        },
+        {
+          "description": "g = toggle gaps",
+          "type": "basic",
+          "from": {
+            "key_code": "g",
+            "modifiers": {
+              "mandatory": [
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m space --toggle gap"
+            }
+          ]
+        },
+        {
+          "description": "shift + g = toggle padding",
+          "type": "basic",
+          "from": {
+            "key_code": "g",
+            "modifiers": {
+              "mandatory": [
+                "left_shift",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m space --toggle padding"
+            }
+          ]
+        },
+        {
+          "description": "command + g = reset gap size",
+          "type": "basic",
+          "from": {
+            "key_code": "g",
+            "modifiers": {
+              "mandatory": [
+                "left_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m space --gap abs:8"
+            }
+          ]
+        },
+        {
+          "description": "shift + command + g = reset padding size",
+          "type": "basic",
+          "from": {
+            "key_code": "g",
+            "modifiers": {
+              "mandatory": [
+                "left_shift",
+                "left_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m space --padding abs:8"
+            }
+          ]
+        },
+        {
+          "description": "control + g = decrease gap size",
+          "type": "basic",
+          "from": {
+            "key_code": "g",
+            "modifiers": {
+              "mandatory": [
+                "left_control",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m space --gap rel:-8"
+            }
+          ]
+        },
+        {
+          "description": "shift + control + g = decrease padding size",
+          "type": "basic",
+          "from": {
+            "key_code": "g",
+            "modifiers": {
+              "mandatory": [
+                "left_control",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m space --padding rel:-8"
+            }
+          ]
+        },
+        {
+          "description": "option + g = increase gap size px",
+          "type": "basic",
+          "from": {
+            "key_code": "g",
+            "modifiers": {
+              "mandatory": [
+                "left_option",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m space --gap rel:8"
+            }
+          ]
+        },
+        {
+          "description": "shift + option + g = increase padding size px",
+          "type": "basic",
+          "from": {
+            "key_code": "g",
+            "modifiers": {
+              "mandatory": [
+                "left_shift",
+                "left_option",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m space --padding rel:8"
+            }
+          ]
+        },
+        {
+          "description": "b = space layout bsp",
+          "type": "basic",
+          "from": {
+            "key_code": "b",
+            "modifiers": {
+              "mandatory": [
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m space --layout bsp"
+            }
+          ]
+        },
+        {
+          "description": "shift + b = space layout float",
+          "type": "basic",
+          "from": {
+            "key_code": "b",
+            "modifiers": {
+              "mandatory": [
+                "left_shift",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m space --layout float"
+            }
+          ]
+        },
+        {
+          "description": "f = space layout bsp",
+          "type": "basic",
+          "from": {
+            "key_code": "b",
+            "modifiers": {
+              "mandatory": [
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m space --layout bsp"
+            }
+          ]
+        },
+        {
+          "description": "shift + f = space layout float",
+          "type": "basic",
+          "from": {
+            "key_code": "f",
+            "modifiers": {
+              "mandatory": [
+                "left_shift",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m space --layout float"
+            }
+          ]
+        },
+        {
+          "description": "x = mirror x",
+          "type": "basic",
+          "from": {
+            "key_code": "x",
+            "modifiers": {
+              "mandatory": [
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m space --mirror x-axis"
+            }
+          ]
+        },
+        {
+          "description": "shift + x = mirror y",
+          "type": "basic",
+          "from": {
+            "key_code": "x",
+            "modifiers": {
+              "mandatory": [
+                "left_shift",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m space --mirror y-axis"
+            }
+          ]
+        },
+        {
+          "description": "y = mirror y",
+          "type": "basic",
+          "from": {
+            "key_code": "y",
+            "modifiers": {
+              "mandatory": [
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m space --mirror y-axis"
+            }
+          ]
+        },
+        {
+          "description": "shift + y = mirror x",
+          "type": "basic",
+          "from": {
+            "key_code": "y",
+            "modifiers": {
+              "mandatory": [
+                "left_shift",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m space --mirror x-axis"
+            }
+          ]
+        },
+        {
+          "description": "c = rotate 270",
+          "type": "basic",
+          "from": {
+            "key_code": "c",
+            "modifiers": {
+              "mandatory": [
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m space --rotate 270"
+            }
+          ]
+        },
+        {
+          "description": "shift + c = rotate 90",
+          "type": "basic",
+          "from": {
+            "key_code": "c",
+            "modifiers": {
+              "mandatory": [
+                "left_shift",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m space --rotate 90"
+            }
+          ]
+        },
+        {
+          "description": "z = rotate 270",
+          "type": "basic",
+          "from": {
+            "key_code": "z",
+            "modifiers": {
+              "mandatory": [
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m space --rotate 90"
+            }
+          ]
+        },
+        {
+          "description": "shift + z = rotate 90",
+          "type": "basic",
+          "from": {
+            "key_code": "z",
+            "modifiers": {
+              "mandatory": [
+                "left_shift",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m space --rotate 270"
+            }
+          ]
+        },
+        {
+          "description": "e = focus recent display",
+          "type": "basic",
+          "from": {
+            "key_code": "e",
+            "modifiers": {
+              "mandatory": [
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m display --focus recent"
+            }
+          ]
+        },
+        {
+          "description": "command + e = move window to recent display",
+          "type": "basic",
+          "from": {
+            "key_code": "e",
+            "modifiers": {
+              "mandatory": [
+                "left_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --display recent"
+            }
+          ]
+        },
+        {
+          "description": "r = focus prev display",
+          "type": "basic",
+          "from": {
+            "key_code": "r",
+            "modifiers": {
+              "mandatory": [
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m display --focus prev || /opt/homebrew/bin/yabai -m display --focus last"
+            }
+          ]
+        },
+        {
+          "description": "command + r = move window to prev display",
+          "type": "basic",
+          "from": {
+            "key_code": "r",
+            "modifiers": {
+              "mandatory": [
+                "left_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --display prev || /opt/homebrew/bin/yabai -m window --display last"
+            }
+          ]
+        },
+        {
+          "description": "t = focus next display",
+          "type": "basic",
+          "from": {
+            "key_code": "t",
+            "modifiers": {
+              "mandatory": [
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m display --focus next || /opt/homebrew/bin/yabai -m display --focus first"
+            }
+          ]
+        },
+        {
+          "description": "command + t = move window to next display",
+          "type": "basic",
+          "from": {
+            "key_code": "t",
+            "modifiers": {
+              "mandatory": [
+                "left_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --display next || /opt/homebrew/bin/yabai -m window --display first"
+            }
+          ]
+        },
+        {
+          "description": "q = focus display: ultrawide 1",
+          "type": "basic",
+          "from": {
+            "key_code": "q",
+            "modifiers": {
+              "mandatory": [
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m display --focus 1"
+            }
+          ]
+        },
+        {
+          "description": "command + q = move window to display: primary",
+          "type": "basic",
+          "from": {
+            "key_code": "q",
+            "modifiers": {
+              "mandatory": [
+                "left_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --display 1"
+            }
+          ]
+        },
+        {
+          "description": "w = focus display: ultrawide 2",
+          "type": "basic",
+          "from": {
+            "key_code": "w",
+            "modifiers": {
+              "mandatory": [
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m display --focus 3"
+            }
+          ]
+        },
+        {
+          "description": "command + w = move window to display 1",
+          "type": "basic",
+          "from": {
+            "key_code": "w",
+            "modifiers": {
+              "mandatory": [
+                "left_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --display 3"
+            }
+          ]
+        },
+        {
+          "description": "a = focus display: portable 1",
+          "type": "basic",
+          "from": {
+            "key_code": "a",
+            "modifiers": {
+              "mandatory": [
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m display --focus 2"
+            }
+          ]
+        },
+        {
+          "description": "command + a = move window to display 1",
+          "type": "basic",
+          "from": {
+            "key_code": "a",
+            "modifiers": {
+              "mandatory": [
+                "left_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --display 2"
+            }
+          ]
+        },
+        {
+          "description": "s = focus display 4",
+          "type": "basic",
+          "from": {
+            "key_code": "s",
+            "modifiers": {
+              "mandatory": [
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m display --focus 4"
+            }
+          ]
+        },
+        {
+          "description": "command + s = move window to display 1",
+          "type": "basic",
+          "from": {
+            "key_code": "s",
+            "modifiers": {
+              "mandatory": [
+                "left_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --display 4"
+            }
+          ]
+        },
+        {
+          "description": "d = focus display: macbook",
+          "type": "basic",
+          "from": {
+            "key_code": "d",
+            "modifiers": {
+              "mandatory": [
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m display --focus 5"
+            }
+          ]
+        },
+        {
+          "description": "command + d = move window to display 1",
+          "type": "basic",
+          "from": {
+            "key_code": "d",
+            "modifiers": {
+              "mandatory": [
+                "left_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/opt/homebrew/bin/yabai -m window --display 5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "CPO Hyper Navigation",
+      "manipulators": [
+        {
+          "description": "hyper + space = cmd + space",
+          "type": "basic",
+          "from": {
+            "key_code": "spacebar",
+            "modifiers": {
+              "optional": [
+                "left_shift",
+                "left_command",
+                "left_control",
+                "left_option"
+              ],
+              "mandatory": [
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "spacebar",
+              "modifiers": [
+                "left_command"
+              ]
+            }
+          ]
+        },
+        {
+          "description": "shift + j = shift + left",
+          "type": "basic",
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "mandatory": [
+                "left_shift",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_arrow",
+              "modifiers": [
+                "left_shift"
+              ]
+            }
+          ]
+        },
+        {
+          "description": "option + shift + j = option + shift + left",
+          "type": "basic",
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "mandatory": [
+                "left_option",
+                "left_shift",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_arrow",
+              "modifiers": [
+                "left_option",
+                "left_shift"
+              ]
+            }
+          ]
+        },
+        {
+          "description": "option + j = option + left",
+          "type": "basic",
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "mandatory": [
+                "left_option",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_arrow",
+              "modifiers": [
+                "left_option"
+              ]
+            }
+          ]
+        },
+        {
+          "description": "option + control + j = option + control + left",
+          "type": "basic",
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "mandatory": [
+                "left_control",
+                "left_option",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_arrow",
+              "modifiers": [
+                "left_option",
+                "left_control"
+              ]
+            }
+          ]
+        },
+        {
+          "description": "control + j = move mouse left",
+          "type": "basic",
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "mandatory": [
+                "left_control",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "mouse_key": {
+                "x": -1000
+              }
+            }
+          ]
+        },
+        {
+          "description": "shift + control + j = move mouse slow left",
+          "type": "basic",
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "mandatory": [
+                "left_shift",
+                "left_control",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "mouse_key": {
+                "x": -200
+              }
+            }
+          ]
+        },
+        {
+          "description": "j = left",
+          "type": "basic",
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "mandatory": [
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_arrow"
+            }
+          ]
+        },
+        {
+          "description": "shift + k = shift + down",
+          "type": "basic",
+          "from": {
+            "key_code": "k",
+            "modifiers": {
+              "mandatory": [
+                "left_shift",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "down_arrow",
+              "modifiers": [
+                "left_shift"
+              ]
+            }
+          ]
+        },
+        {
+          "description": "option + shift + k = option + shift + down",
+          "type": "basic",
+          "from": {
+            "key_code": "k",
+            "modifiers": {
+              "mandatory": [
+                "left_option",
+                "left_shift",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "down_arrow",
+              "modifiers": [
+                "left_option",
+                "left_shift"
+              ]
+            }
+          ]
+        },
+        {
+          "description": "option + k = option + down",
+          "type": "basic",
+          "from": {
+            "key_code": "k",
+            "modifiers": {
+              "mandatory": [
+                "left_option",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "down_arrow",
+              "modifiers": [
+                "left_option"
+              ]
+            }
+          ]
+        },
+        {
+          "description": "option + control + k = option + control + down",
+          "type": "basic",
+          "from": {
+            "key_code": "k",
+            "modifiers": {
+              "mandatory": [
+                "left_control",
+                "left_option",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "down_arrow",
+              "modifiers": [
+                "left_option",
+                "left_control"
+              ]
+            }
+          ]
+        },
+        {
+          "description": "control + k = move mouse down",
+          "type": "basic",
+          "from": {
+            "key_code": "k",
+            "modifiers": {
+              "mandatory": [
+                "left_control",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "mouse_key": {
+                "y": 1000
+              }
+            }
+          ]
+        },
+        {
+          "description": "shift + control + k = move mouse slow down",
+          "type": "basic",
+          "from": {
+            "key_code": "k",
+            "modifiers": {
+              "mandatory": [
+                "left_shift",
+                "left_control",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "mouse_key": {
+                "y": 200
+              }
+            }
+          ]
+        },
+        {
+          "description": "k = down",
+          "type": "basic",
+          "from": {
+            "key_code": "k",
+            "modifiers": {
+              "mandatory": [
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "down_arrow"
+            }
+          ]
+        },
+        {
+          "description": "shift + i = shift + up",
+          "type": "basic",
+          "from": {
+            "key_code": "i",
+            "modifiers": {
+              "mandatory": [
+                "left_shift",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "up_arrow",
+              "modifiers": [
+                "left_shift"
+              ]
+            }
+          ]
+        },
+        {
+          "description": "option + shift + i = option + shift + up",
+          "type": "basic",
+          "from": {
+            "key_code": "i",
+            "modifiers": {
+              "mandatory": [
+                "left_option",
+                "left_shift",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "up_arrow",
+              "modifiers": [
+                "left_option",
+                "left_shift"
+              ]
+            }
+          ]
+        },
+        {
+          "description": "option + i = option + up",
+          "type": "basic",
+          "from": {
+            "key_code": "i",
+            "modifiers": {
+              "mandatory": [
+                "left_option",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "up_arrow",
+              "modifiers": [
+                "left_option"
+              ]
+            }
+          ]
+        },
+        {
+          "description": "option + control + i = option + control + up",
+          "type": "basic",
+          "from": {
+            "key_code": "i",
+            "modifiers": {
+              "mandatory": [
+                "left_control",
+                "left_option",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "up_arrow",
+              "modifiers": [
+                "left_option",
+                "left_control"
+              ]
+            }
+          ]
+        },
+        {
+          "description": "control + i = move mouse up",
+          "type": "basic",
+          "from": {
+            "key_code": "i",
+            "modifiers": {
+              "mandatory": [
+                "left_control",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "mouse_key": {
+                "y": -1000
+              }
+            }
+          ]
+        },
+        {
+          "description": "shift + control + i = move mouse slow up",
+          "type": "basic",
+          "from": {
+            "key_code": "i",
+            "modifiers": {
+              "mandatory": [
+                "left_shift",
+                "left_control",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "mouse_key": {
+                "y": -200
+              }
+            }
+          ]
+        },
+        {
+          "description": "i = up",
+          "type": "basic",
+          "from": {
+            "key_code": "i",
+            "modifiers": {
+              "mandatory": [
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "up_arrow"
+            }
+          ]
+        },
+        {
+          "description": "shift + l = shift + right",
+          "type": "basic",
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "mandatory": [
+                "left_shift",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_arrow",
+              "modifiers": [
+                "left_shift"
+              ]
+            }
+          ]
+        },
+        {
+          "description": "option + shift + l = option + shift + right",
+          "type": "basic",
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "mandatory": [
+                "left_option",
+                "left_shift",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_arrow",
+              "modifiers": [
+                "left_option",
+                "left_shift"
+              ]
+            }
+          ]
+        },
+        {
+          "description": "option + l = option + right",
+          "type": "basic",
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "mandatory": [
+                "left_option",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_arrow",
+              "modifiers": [
+                "left_option"
+              ]
+            }
+          ]
+        },
+        {
+          "description": "option + control + l = option + control + right",
+          "type": "basic",
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "mandatory": [
+                "left_control",
+                "left_option",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_arrow",
+              "modifiers": [
+                "left_option",
+                "left_control"
+              ]
+            }
+          ]
+        },
+        {
+          "description": "control + l = move mouse right",
+          "type": "basic",
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "mandatory": [
+                "left_control",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "mouse_key": {
+                "x": 1000
+              }
+            }
+          ]
+        },
+        {
+          "description": "shift + control + l = move mouse slow right",
+          "type": "basic",
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "mandatory": [
+                "left_shift",
+                "left_control",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "mouse_key": {
+                "x": 200
+              }
+            }
+          ]
+        },
+        {
+          "description": "l = right",
+          "type": "basic",
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "mandatory": [
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_arrow"
+            }
+          ]
+        },
+        {
+          "description": "control + u = mouse left click",
+          "type": "basic",
+          "from": {
+            "key_code": "u",
+            "modifiers": {
+              "mandatory": [
+                "left_control",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "pointing_button": "button1"
+            }
+          ]
+        },
+        {
+          "description": "shift + control + u = mouse left click",
+          "type": "basic",
+          "from": {
+            "key_code": "u",
+            "modifiers": {
+              "mandatory": [
+                "left_shift",
+                "left_control",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "pointing_button": "button1"
+            }
+          ]
+        },
+        {
+          "description": "u = page_up",
+          "type": "basic",
+          "from": {
+            "key_code": "u",
+            "modifiers": {
+              "mandatory": [
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "page_up"
+            }
+          ]
+        },
+        {
+          "description": "control + o = mouse right click",
+          "type": "basic",
+          "from": {
+            "key_code": "o",
+            "modifiers": {
+              "mandatory": [
+                "left_control",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "pointing_button": "button2"
+            }
+          ]
+        },
+        {
+          "description": "shift + control + i = mouse move slow down",
+          "type": "basic",
+          "from": {
+            "key_code": "o",
+            "modifiers": {
+              "mandatory": [
+                "left_shift",
+                "left_control",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "pointing_button": "button2"
+            }
+          ]
+        },
+        {
+          "description": " o = page_down",
+          "type": "basic",
+          "from": {
+            "key_code": "o",
+            "modifiers": {
+              "mandatory": [
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "page_down"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "CPO Hyper Clipboard",
+      "manipulators": [
+        {
+          "description": "command + 1 = copy to clip1",
+          "type": "basic",
+          "from": {
+            "key_code": "1",
+            "modifiers": {
+              "mandatory": [
+                "left_command",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "c",
+              "modifiers": [
+                "left_command"
+              ]
+            },
+            {
+              "shell_command": "pbpaste > ~/.clip1"
+            }
+          ]
+        },
+        {
+          "description": "1 = paste from clip1",
+          "type": "basic",
+          "from": {
+            "key_code": "1",
+            "modifiers": {
+              "mandatory": [
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "cat ~/.clip1 | pbcopy "
+            },
+            {
+              "key_code": "v",
+              "modifiers": [
+                "left_command"
+              ]
+            }
+          ]
+        },
+        {
+          "description": "command + 2 = copy to clip2",
+          "type": "basic",
+          "from": {
+            "key_code": "2",
+            "modifiers": {
+              "mandatory": [
+                "left_command",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "c",
+              "modifiers": [
+                "left_command"
+              ]
+            },
+            {
+              "shell_command": "pbpaste > ~/.clip2"
+            }
+          ]
+        },
+        {
+          "description": "2 = paste from clip2",
+          "type": "basic",
+          "from": {
+            "key_code": "2",
+            "modifiers": {
+              "mandatory": [
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "cat ~/.clip2 | pbcopy "
+            },
+            {
+              "key_code": "v",
+              "modifiers": [
+                "left_command"
+              ]
+            }
+          ]
+        },
+        {
+          "description": "command + 3 = copy to clip3",
+          "type": "basic",
+          "from": {
+            "key_code": "3",
+            "modifiers": {
+              "mandatory": [
+                "left_command",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "c",
+              "modifiers": [
+                "left_command"
+              ]
+            },
+            {
+              "shell_command": "pbpaste > ~/.clip3"
+            }
+          ]
+        },
+        {
+          "description": "3 = paste from clip3",
+          "type": "basic",
+          "from": {
+            "key_code": "3",
+            "modifiers": {
+              "mandatory": [
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "cat ~/.clip3 | pbcopy "
+            },
+            {
+              "key_code": "v",
+              "modifiers": [
+                "left_command"
+              ]
+            }
+          ]
+        },
+        {
+          "description": "command + 4 = copy to clip4",
+          "type": "basic",
+          "from": {
+            "key_code": "4",
+            "modifiers": {
+              "mandatory": [
+                "left_command",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "c",
+              "modifiers": [
+                "left_command"
+              ]
+            },
+            {
+              "shell_command": "pbpaste > ~/.clip4"
+            }
+          ]
+        },
+        {
+          "description": "4 = paste from clip4",
+          "type": "basic",
+          "from": {
+            "key_code": "4",
+            "modifiers": {
+              "mandatory": [
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "cat ~/.clip4 | pbcopy "
+            },
+            {
+              "key_code": "v",
+              "modifiers": [
+                "left_command"
+              ]
+            }
+          ]
+        },
+        {
+          "description": "command + 5 = copy to clip5",
+          "type": "basic",
+          "from": {
+            "key_code": "5",
+            "modifiers": {
+              "mandatory": [
+                "left_command",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "c",
+              "modifiers": [
+                "left_command"
+              ]
+            },
+            {
+              "shell_command": "pbpaste > ~/.clip5"
+            }
+          ]
+        },
+        {
+          "description": "5 = paste from clip5",
+          "type": "basic",
+          "from": {
+            "key_code": "5",
+            "modifiers": {
+              "mandatory": [
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "cat ~/.clip5 | pbcopy "
+            },
+            {
+              "key_code": "v",
+              "modifiers": [
+                "left_command"
+              ]
+            }
+          ]
+        },
+        {
+          "description": "command + 6 = copy to clip6",
+          "type": "basic",
+          "from": {
+            "key_code": "6",
+            "modifiers": {
+              "mandatory": [
+                "left_command",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "c",
+              "modifiers": [
+                "left_command"
+              ]
+            },
+            {
+              "shell_command": "pbpaste > ~/.clip6"
+            }
+          ]
+        },
+        {
+          "description": "6 = paste from clip6",
+          "type": "basic",
+          "from": {
+            "key_code": "6",
+            "modifiers": {
+              "mandatory": [
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "cat ~/.clip6 | pbcopy "
+            },
+            {
+              "key_code": "v",
+              "modifiers": [
+                "left_command"
+              ]
+            }
+          ]
+        },
+        {
+          "description": "command + 7 = copy to clip7",
+          "type": "basic",
+          "from": {
+            "key_code": "7",
+            "modifiers": {
+              "mandatory": [
+                "left_command",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "c",
+              "modifiers": [
+                "left_command"
+              ]
+            },
+            {
+              "shell_command": "pbpaste > ~/.clip7"
+            }
+          ]
+        },
+        {
+          "description": "7 = paste from clip7",
+          "type": "basic",
+          "from": {
+            "key_code": "7",
+            "modifiers": {
+              "mandatory": [
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "cat ~/.clip7 | pbcopy "
+            },
+            {
+              "key_code": "v",
+              "modifiers": [
+                "left_command"
+              ]
+            }
+          ]
+        },
+        {
+          "description": "command + 8 = copy to clip8",
+          "type": "basic",
+          "from": {
+            "key_code": "8",
+            "modifiers": {
+              "mandatory": [
+                "left_command",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "c",
+              "modifiers": [
+                "left_command"
+              ]
+            },
+            {
+              "shell_command": "pbpaste > ~/.clip8"
+            }
+          ]
+        },
+        {
+          "description": "8 = paste from clip8",
+          "type": "basic",
+          "from": {
+            "key_code": "8",
+            "modifiers": {
+              "mandatory": [
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "cat ~/.clip8 | pbcopy "
+            },
+            {
+              "key_code": "v",
+              "modifiers": [
+                "left_command"
+              ]
+            }
+          ]
+        },
+        {
+          "description": "command + 9 = copy to clip9",
+          "type": "basic",
+          "from": {
+            "key_code": "9",
+            "modifiers": {
+              "mandatory": [
+                "left_command",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "c",
+              "modifiers": [
+                "left_command"
+              ]
+            },
+            {
+              "shell_command": "pbpaste > ~/.clip9"
+            }
+          ]
+        },
+        {
+          "description": "9 = paste from clip9",
+          "type": "basic",
+          "from": {
+            "key_code": "9",
+            "modifiers": {
+              "mandatory": [
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "cat ~/.clip9 | pbcopy "
+            },
+            {
+              "key_code": "v",
+              "modifiers": [
+                "left_command"
+              ]
+            }
+          ]
+        },
+        {
+          "description": "command + 0 = copy to clip0",
+          "type": "basic",
+          "from": {
+            "key_code": "0",
+            "modifiers": {
+              "mandatory": [
+                "left_command",
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "c",
+              "modifiers": [
+                "left_command"
+              ]
+            },
+            {
+              "shell_command": "pbpaste > ~/.clip0"
+            }
+          ]
+        },
+        {
+          "description": "0 = paste from clip0",
+          "type": "basic",
+          "from": {
+            "key_code": "0",
+            "modifiers": {
+              "mandatory": [
+                "right_command",
+                "right_control",
+                "right_shift",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "cat ~/.clip0 | pbcopy "
+            },
+            {
+              "key_code": "v",
+              "modifiers": [
+                "left_command"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
